@@ -23,6 +23,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/hightower">
     </ImageView>
+
     <LinearLayout
         android:id="@+id/calculador"
         android:layout_width="match_parent"
@@ -31,12 +32,19 @@
         android:layout_marginBottom="56dp"
         android:orientation="vertical"
         >
-
+        <TextClock
+            android:id="@+id/textClock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:textSize="27sp"
+            android:fontFamily="@font/tf2build"/>
         <ImageView
             android:layout_gravity="center"
             android:src="@drawable/tf2title"
+            android:scaleType="centerCrop"
             android:layout_width="match_parent"
-            android:layout_height="180dp" />
+            android:layout_height="150dp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
@@ -81,7 +89,6 @@
         <com.q42.android.scrollingimageview.ScrollingImageView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-
             android:id="@+id/bgScroll"
             scrolling_image_view:source="@drawable/tf2mercs"
             scrolling_image_view:speed="6dp"
@@ -121,4 +128,8 @@
                 android:layout_height="50dp"/>
         </TableRow>
     </TableLayout>
+
+
+
+
 </RelativeLayout>

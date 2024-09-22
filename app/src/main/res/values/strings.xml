@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">AppLayouts</string>
+    <string name="compra">COMPRA</string>
+    <string name="venta">VENTA</string>
+    <string name="calculadora_de_valor">Calculadora de valor</string>
+    <string name="llaves">Llaves</string>
+    <string name="cantidad">cantidad</string>
+    <string name="convetir_a_metal">Convetir a Metal</string>
+    <string name="_0">0</string>
+    <string name="ref">REF</string>
+    <string name="x">X</string>
+    <string name="danos_tu_opinion">¡DANOS TU OPINION!</string>
 </resources>

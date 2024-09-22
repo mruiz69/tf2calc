@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="objetosSpinner">
+        <item>LLAVES</item>
+        <item>ARMAS</item>
+        <item>COSMÉTICOS</item>
+        <item>BURLAS</item>
+    </string-array>
+</resources>

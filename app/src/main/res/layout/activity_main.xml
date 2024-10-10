@@ -353,20 +353,24 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="750dp"
         android:layout_centerHorizontal="true"
-        android:text="@string/danos_tu_opinion"
+        android:text=""
         android:textColor="#ede7d1"
         android:textSize="27sp"
         android:fontFamily="@font/tf2build">
     </TextView>
-    <RatingBar
+
+    <Button
+        android:id="@+id/buttonMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="790dp"
         android:layout_centerHorizontal="true"
-        android:numStars="5"
-        android:stepSize=".5"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
-
-    </RatingBar>
+        android:backgroundTint="#7c7268"
+        android:fontFamily="@font/tf2build"
+        android:layout_gravity="center"
+        android:text="Desplegar Mapa"
+        android:textSize="19sp"
+        android:layout_marginBottom="15dp"/>
 
 
 

@@ -372,6 +372,31 @@
         android:textSize="19sp"
         android:layout_marginBottom="15dp"/>
 
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp">
+        <TableRow>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="6dp"
+                />
+            <Button
+                android:id="@+id/btnSelectImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Elegir imagen de perfil"
+                android:backgroundTint="#7c7268"
+                android:fontFamily="@font/tf2build"
+                android:layout_gravity="center"
+                android:textSize="16sp"/>
 
+        </TableRow>
+
+    </TableLayout>
 
 </RelativeLayout>

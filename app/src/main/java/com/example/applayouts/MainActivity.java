@@ -4,7 +4,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 
 
 import androidx.annotation.Nullable;
@@ -39,6 +41,29 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selectImage();
+            }
+        });
+
+        Spinner spCategoria = findViewById(R.id.spinnerCategoria);
+        final boolean[] isSpinnerInitialized = {false}; // Flag to track initialization
+        spCategoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                // Check if this is a user interaction and not the initial setup
+                if (isSpinnerInitialized[0]) {
+                    // The user selected something, perform your action here
+                    Intent intent = new Intent(MainActivity.this, Armas.class);
+                    startActivity(intent);
+                } else {
+                    // Skip the initial trigger
+                    isSpinnerInitialized[0] = true; // Set the flag after the first call
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
 

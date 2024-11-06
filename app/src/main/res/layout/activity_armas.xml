@@ -41,35 +41,75 @@ android:layout_gravity="center">
     <EditText
         android:id="@+id/editTextName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nombre" />
+        android:layout_height="48dp"
+        android:textAlignment="center"
+        android:fontFamily="@font/tf2build"
+        android:background="#fdeecf"
+        android:textColorHint="#34302d"
+        android:textColor="#34302d"
+        android:textSize="32sp"
+        android:layout_gravity="center"
+        android:hint="Nombre"
+        android:layout_marginBottom="15dp"/>
     <!-- Campo de entrada para la descripción -->
     <EditText
         android:id="@+id/editTextDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Descripción" />
+        android:textAlignment="center"
+        android:fontFamily="@font/tf2build"
+        android:background="#fdeecf"
+        android:textColorHint="#34302d"
+        android:textColor="#34302d"
+        android:textSize="19sp"
+        android:inputType="textMultiLine"
+        android:minLines="4"
+        android:layout_gravity="center"
+        android:hint="Descripción"
+        android:layout_marginBottom="15dp"/>
     <!-- Botones para operaciones CRUD -->
     <Button
         android:id="@+id/buttonAdd"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#7c7268"
+        android:fontFamily="@font/tf2build"
+        android:layout_gravity="center"
+        android:textSize="19sp"
         android:text="Agregar" />
     <Button
         android:id="@+id/buttonUpdate"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#7c7268"
+        android:fontFamily="@font/tf2build"
+        android:layout_gravity="center"
+        android:textSize="19sp"
         android:text="Actualizar" />
     <Button
         android:id="@+id/buttonDelete"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Eliminar" />
+        android:backgroundTint="#7c7268"
+        android:fontFamily="@font/tf2build"
+        android:layout_gravity="center"
+        android:textSize="19sp"
+        android:text="Eliminar"
+        android:layout_marginBottom="10dp"/>
     <!-- ListView para mostrar los elementos -->
     <ListView
         android:id="@+id/listView"
+        android:theme="@style/AppTheme.CustomFont"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/tf2build"
+        android:background="#fdeecf"
+        android:textColorHint="#34302d"
+        android:textColor="#34302d"
+        android:textSize="19sp"
+        android:dividerHeight="10dp"
+        android:textAlignment="center"
+        android:layout_gravity="center"/>
 </LinearLayout>
 
 </androidx.cardview.widget.CardView>

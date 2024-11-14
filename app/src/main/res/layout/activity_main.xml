@@ -79,7 +79,7 @@
                 android:hint="@string/cantidad" />
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/buttonConvertir"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#7c7268"
@@ -128,6 +128,7 @@
                     <EditText
                         android:id="@+id/ResultadoCompra"
                         android:layout_height="48dp"
+                        android:layout_width="wrap_content"
                         android:layout_gravity="center"
                         android:background="#fdeecf"
                         android:fontFamily="@font/tf2build"
@@ -147,6 +148,7 @@
                         android:id="@+id/ResultadoVenta"
                         android:minWidth="48dp"
                         android:layout_height="48dp"
+                        android:layout_width="wrap_content"
                         android:importantForAutofill="no"
                         android:textAlignment="center"
                         android:fontFamily="@font/tf2build"

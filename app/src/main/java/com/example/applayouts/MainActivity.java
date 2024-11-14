@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 
@@ -14,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +32,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button btVolver = findViewById(R.id.buttonMap);
-
+        Button btCalcular = findViewById(R.id.buttonConvertir);
         Button btnSelectImage = findViewById(R.id.btnSelectImage);
+
         recyclerView = findViewById(R.id.recyclerView);
         // Configurar el RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -63,6 +67,57 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        btCalcular.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText ETcantidad = findViewById(R.id.Llaves);
+                EditText ETcompra = findViewById(R.id.ResultadoCompra);
+                EditText ETventa = findViewById(R.id.ResultadoVenta);
+
+                int cantidad = Integer.parseInt(ETcantidad.getText().toString());
+                DecimalFormat df = new DecimalFormat("#.##");
+
+                double compra=0;
+                for(int i=0; i<cantidad; i++)
+                {
+                    compra=compra+69.444444;
+                }
+
+                df.setRoundingMode(RoundingMode.DOWN);
+                if(compra-Math.floor(compra)>0.99)
+                {
+                    compra+=0.01;
+                    compra = Double.parseDouble(df.format(compra));
+                }
+                else {
+                    compra = Double.parseDouble(df.format(compra));
+                }
+
+                double venta = 0;
+                for(int i=0; i<cantidad; i++)
+                {
+                    venta=venta+69.111111;
+                }
+
+                df.setRoundingMode(RoundingMode.DOWN);
+                if(venta-Math.floor(venta)>0.99)
+                {
+                    venta+=0.01;
+                    venta = Double.parseDouble(df.format(venta));
+                }
+                else{
+                    venta = Double.parseDouble(df.format(venta));
+                }
+
+
+
+                ETcompra.setText(String.valueOf(compra));
+                ETventa.setText(String.valueOf(venta));
+
 
             }
         });

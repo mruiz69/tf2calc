@@ -113,5 +113,38 @@ android:layout_gravity="center">
 </LinearLayout>
 
 </androidx.cardview.widget.CardView>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="70dp">
+        <TableRow
+            android:layout_gravity="bottom"
+            android:gravity="bottom">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@drawable/tf2logo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btVolver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/button_bg"
+                android:fontFamily="@font/tf2build"
+                android:textColor="#f5e7de"
+                android:text="Regresar"
+                android:textSize="29sp" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@drawable/tf2logo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+        </TableRow>
+    </TableLayout>
 
 </RelativeLayout>

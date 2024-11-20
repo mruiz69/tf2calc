@@ -20,6 +20,7 @@
 
         <activity
             android:name="com.tf2calc.applayouts.Inicio"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,6 +30,7 @@
         </activity>
         <activity
             android:name="com.tf2calc.applayouts.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,6 +40,7 @@
         </activity>
         <activity
             android:name="com.tf2calc.applayouts.Armas"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,6 +50,7 @@
         </activity>
         <activity
             android:name="com.tf2calc.applayouts.Mapa"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -10,8 +10,8 @@ android {
         applicationId 'com.tf2calc.applayouts'
         minSdk 27
         targetSdk 34
-        versionCode 2
-        versionName "0.11"
+        versionCode 3
+        versionName "0.111"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

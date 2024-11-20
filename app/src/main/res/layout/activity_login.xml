@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/mapa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="com.tf2calc.applayouts.Mapa"
+        android:background="#34302d">
+        <FrameLayout
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="160dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#6b6a65">
+        </FrameLayout>
+        <ImageView
+            android:layout_marginTop="65dp"
+            android:layout_marginBottom="165dp"
+            android:layout_width="match_parent"
+            android:layout_height="700dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/hightower">
+        </ImageView>
+
+
+
+        <LinearLayout
+            android:id="@+id/calculador"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="56dp"
+            android:orientation="vertical"
+            >
+            <TextClock
+                android:id="@+id/textClock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:textSize="27sp"
+                android:fontFamily="@font/tf2build"/>
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@drawable/tf2title"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="-30dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#E634302d"
+                app:cardCornerRadius="12dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="-35dp">
+                <Spinner
+                    android:id="@+id/spinnerMapa"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/tf2build"
+                    android:background="#dabdab"
+                    android:gravity="center"
+                    android:drawSelectorOnTop="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:dropDownWidth="match_parent"
+                    android:minHeight="48dp"
+                    android:minWidth="340dp"
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="12dp"
+                android:backgroundTint="#E634302d"
+                android:layout_marginHorizontal="10dp"
+                />
+        </LinearLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="70dp">
+            <TableRow
+                android:layout_gravity="bottom"
+                android:gravity="bottom">
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/tf2logo"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btVolver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/button_bg"
+                    android:fontFamily="@font/tf2build"
+                    android:textColor="#f5e7de"
+                    android:text="Regresar"
+                    android:textSize="29sp" />
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/tf2logo"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
+            </TableRow>
+        </TableLayout>
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="200dp"
+            android:minHeight="100dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+</ScrollView>

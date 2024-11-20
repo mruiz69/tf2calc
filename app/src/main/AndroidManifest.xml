@@ -17,11 +17,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppLayouts"
         tools:targetApi="34">
-
         <activity
-            android:name="com.tf2calc.applayouts.Inicio"
-            android:screenOrientation="portrait"
-            android:exported="true">
+            android:name=".Login"
+            android:exported="false" />
+        <activity
+            android:name=".Inicio"
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,22 +31,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.tf2calc.applayouts.MainActivity"
-            android:windowSoftInputMode="adjustResize"
+            android:name=".MainActivity"
+            android:exported="true"
             android:screenOrientation="portrait"
-            android:exported="true">
-        </activity>
+            android:windowSoftInputMode="adjustResize"></activity>
         <activity
-            android:name="com.tf2calc.applayouts.Armas"
-            android:screenOrientation="portrait"
-            android:exported="true">
-
-        </activity>
+            android:name=".Armas"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
         <activity
-            android:name="com.tf2calc.applayouts.Mapa"
-            android:screenOrientation="portrait"
-            android:exported="true">
-        </activity>
+            android:name=".Mapa"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

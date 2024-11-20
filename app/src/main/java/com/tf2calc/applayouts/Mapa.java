@@ -1,6 +1,7 @@
 package com.tf2calc.applayouts;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,8 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import androidx.appcompat.widget.AppCompatSpinner;
 
@@ -29,6 +32,9 @@ import org.osmdroid.views.overlay.Polyline;
 import com.q42.android.scrollingimageview.ScrollingImageView;
 
 public class Mapa extends AppCompatActivity {
+    private ImageView imageView;
+    private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +45,8 @@ public class Mapa extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        progressBar = findViewById(R.id.progress_bar);
 
 
         //Cargarconfiguracion de mapa predeterminado
@@ -136,11 +144,15 @@ public class Mapa extends AppCompatActivity {
                 switch (position) {
                     case 0:
                         mv.setTileSource(TileSourceFactory.MAPNIK);
+                        progressBar.setVisibility(View.VISIBLE); // Muestra el ProgressBar
+                        new LoadImageTask().execute();
                         break;
                     case 1:
                         mv.setTileSource(new XYTileSource(
                                 "PublicTransport", 0, 18, 256, ".png", new String[]{
                                 "https://tile.memomaps.de/tilegen/"}));
+                        progressBar.setVisibility(View.VISIBLE); // Muestra el ProgressBar
+                        new LoadImageTask().execute();
                         break;
                     case 2:
                         mv.setTileSource(new XYTileSource(
@@ -148,6 +160,8 @@ public class Mapa extends AppCompatActivity {
                                 "https://a.tile.opentopomap.org/",
                                 "https://b.tile.opentopomap.org/",
                                 "https://c.tile.opentopomap.org/"}));
+                        progressBar.setVisibility(View.VISIBLE); // Muestra el ProgressBar
+                        new LoadImageTask().execute();
                         break;
                 }
             }
@@ -171,4 +185,27 @@ public class Mapa extends AppCompatActivity {
             }
         });
     }
+    private class LoadImageTask extends AsyncTask<Void, Void, Integer> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // Opcional: puedes mostrar un mensaje o animación aquí.
+        }
+        @Override
+        protected Integer doInBackground(Void... voids) {
+            try {
+                Thread.sleep(3000); // Simula la carga
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return 1; // Reemplaza con tu imagen
+        }
+        @Override
+        protected void onPostExecute(Integer result) {
+            super.onPostExecute(result);
+            //imageView.setImageResource(result);
+            progressBar.setVisibility(View.GONE); // Oculta el ProgressBar
+        }
+    }
+
 }

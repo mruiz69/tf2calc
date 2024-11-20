@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<RelativeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:scrolling_image_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mapa"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="com.tf2calc.applayouts.Mapa"
     android:background="#34302d">
     <FrameLayout
@@ -19,7 +24,7 @@
         android:layout_marginTop="65dp"
         android:layout_marginBottom="165dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="700dp"
         android:scaleType="centerCrop"
         android:src="@drawable/hightower">
     </ImageView>
@@ -28,7 +33,7 @@
         android:id="@+id/calculador"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="60dp"
         android:layout_marginBottom="56dp"
         android:orientation="vertical"
         >
@@ -59,34 +64,37 @@
                 android:textAlignment="center"
                 android:fontFamily="@font/tf2build"
                 android:background="#dabdab"
+                android:gravity="center"
                 android:drawSelectorOnTop="true"
-                android:theme="@style/SpinnerTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_margin="15dp"
+                android:dropDownWidth="match_parent"
                 android:minHeight="48dp"
+                android:minWidth="340dp"
                 />
         </androidx.cardview.widget.CardView>
 
-    </LinearLayout>
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="260dp"
-        app:cardElevation="0dp"
-        app:cardCornerRadius="12dp"
-        android:backgroundTint="#E634302d"
-        android:layout_marginHorizontal="10dp"
-        >
-        <org.osmdroid.views.MapView
-            android:layout_margin="20dp"
-            android:id="@+id/mapView"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="240dp"
-            android:minHeight="48dp"
-            />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="12dp"
+            android:backgroundTint="#E634302d"
+            android:layout_marginHorizontal="10dp"
+            >
+            <org.osmdroid.views.MapView
+                android:layout_margin="20dp"
+                android:id="@+id/mapView"
+                android:layout_width="match_parent"
+                android:layout_height="340dp"
+                android:minHeight="48dp"
+                />
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -125,3 +133,4 @@
 
 
 </RelativeLayout>
+</ScrollView>

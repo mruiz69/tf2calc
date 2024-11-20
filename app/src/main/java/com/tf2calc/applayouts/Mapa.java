@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import androidx.appcompat.widget.AppCompatSpinner;
 
 import org.osmdroid.api.IMapView;
 import org.osmdroid.config.Configuration;
@@ -122,9 +123,9 @@ public class Mapa extends AppCompatActivity {
         String[] mapTypes = {"Mapa normal","Mapa de transporte","Mapa Topográfico"};
 
         //Creamos ArrayAdapter para poblar Spinner
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, mapTypes);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, mapTypes);
         //Establecemos Layout
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         //asignamos adaptador a Spinner
         tipoMapaSpinner.setAdapter(adapter);
 

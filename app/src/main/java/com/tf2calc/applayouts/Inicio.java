@@ -28,7 +28,10 @@ public class Inicio extends AppCompatActivity  implements SensorEventListener{
 
     private SensorManager sensorManager;
     private Sensor proximitySensor;
+    private Sensor lightSensor;
     private TextView proximityTextView;
+    private TextView lightValueTextView;
+    private ExoPlayer player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +56,22 @@ public class Inicio extends AppCompatActivity  implements SensorEventListener{
         bgScroll.start();
         playAudio();
 
-        proximityTextView = findViewById(R.id.proximityTextView);
-
         // Initialize the SensorManager and proximity sensor
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        proximityTextView = findViewById(R.id.proximityTextView);
+
+        // Get Light Sensor
+        lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+
+        // UI Element to Display Light Sensor Data
+        lightValueTextView = findViewById(R.id.lightValue);
+
+        // Check if Light Sensor is Available
+        if (lightSensor == null) {
+            lightValueTextView.setText("No hay sensor de luz disponible");
+        }
+
+
         proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
 
         if (proximitySensor != null) {
@@ -64,24 +79,20 @@ public class Inicio extends AppCompatActivity  implements SensorEventListener{
             sensorManager.registerListener(this, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL);
         } else {
             // If the device doesn't have a proximity sensor, display a message
-            proximityTextView.setText("Proximity sensor not available");
+            proximityTextView.setText("No hay sensor de proximidad disponible");
         }
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
-            float distance = event.values[0];
-            if (distance < proximitySensor.getMaximumRange()) {
-                // Object is near, dim the screen
-                proximityTextView.setText("HAY ALGO CERCA");
-                setScreenBrightness(0.1f); // Dim screen brightness to 10%
-            } else {
-                // Object is far, restore the brightness
-                proximityTextView.setText("NADA CERCA");
-                setScreenBrightness(1.0f); // Set screen brightness to 100%
-            }
+        if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
+            float lightLevel = event.values[0];
+            lightValueTextView.setText(String.format("Nivel de luz: %.2f lux", lightLevel));
+        } else if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
+            float proximityValue = event.values[0];
+            proximityTextView.setText(String.format("Proximidad: %.2f cm", proximityValue));
         }
+
     }
 
     @Override
@@ -92,16 +103,29 @@ public class Inicio extends AppCompatActivity  implements SensorEventListener{
     @Override
     protected void onPause() {
         super.onPause();
+        //Stop audio playback
+        stopAudio();
         // Unregister the sensor listener to save battery
-        sensorManager.unregisterListener(this);
+        if (proximitySensor != null) {
+            sensorManager.unregisterListener(this, proximitySensor);
+        }
+
+        if (lightSensor != null) {
+            sensorManager.unregisterListener(this, lightSensor);
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        //Resume audio playback
+        playAudio();
         // Re-register the sensor listener
         if (proximitySensor != null) {
             sensorManager.registerListener(this, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL);
+        }
+        if (lightSensor != null) {
+            sensorManager.registerListener(this, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
     }
 
@@ -120,17 +144,23 @@ public class Inicio extends AppCompatActivity  implements SensorEventListener{
 
     public void playAudio()
     {
-        ExoPlayer player = new ExoPlayer.Builder(getApplicationContext()).build();
-        MediaItem mediaItem = MediaItem.fromUri("android.resource://"+getPackageName()+"/raw/moregunv3");
-        // Set the media item to be played.
-        player.setMediaItem(mediaItem);
-        // Prepare the player.
-        player.prepare();
-        // Start the playback.
-        player.play();
-        //MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.moregunv3);
-        //mediaPlayer.setLooping(true);
-        //mediaPlayer.start(); // no need to call prepare(); create() does that for you
+        if(player==null)
+        {
+            player = new ExoPlayer.Builder(getApplicationContext()).build();
+            MediaItem mediaItem = MediaItem.fromUri("android.resource://"+getPackageName()+"/raw/moregunv3");
+            // Set the media item to be played.
+            player.setMediaItem(mediaItem);
+            player.prepare();
+            player.play();
+        }
+
+    }
+    public void stopAudio() {
+        if (player != null) {
+            player.stop();
+            player.release();
+            player = null;
+        }
     }
 
 }

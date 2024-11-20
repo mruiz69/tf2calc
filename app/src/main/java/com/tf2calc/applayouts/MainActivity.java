@@ -18,11 +18,11 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private Button btnConvertir;
     private static final int PICK_IMAGE_REQUEST = 1;
-    private RecyclerView recyclerView;
     private ImageAdapter imageAdapter;
     private List<Uri> imageUriList = new ArrayList<>();
     @Override
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         Button btCalcular = findViewById(R.id.buttonConvertir);
         Button btnSelectImage = findViewById(R.id.btnSelectImage);
 
-        recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         // Configurar el RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         imageAdapter = new ImageAdapter(this, imageUriList);
@@ -68,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 int cantidad = Integer.parseInt(ETcantidad.getText().toString());
-                DecimalFormat df = new DecimalFormat("#.##");
+                DecimalFormat df = (DecimalFormat) DecimalFormat.getInstance(Locale.US);
+                df.applyPattern("#.##");
 
                 double compra=0;
                 for(int i=0; i<cantidad; i++)
@@ -77,14 +78,13 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 df.setRoundingMode(RoundingMode.DOWN);
-                if(compra-Math.floor(compra)>0.99)
+                double compraRedondeada = compra-Math.floor(compra);
+                if(compraRedondeada>0.99)
                 {
                     compra+=0.01;
-                    compra = Double.parseDouble(df.format(compra));
                 }
-                else {
-                    compra = Double.parseDouble(df.format(compra));
-                }
+                String compraFormato = df.format(compra);
+                compra = Double.parseDouble(compraFormato);
 
                 double venta = 0;
                 for(int i=0; i<cantidad; i++)

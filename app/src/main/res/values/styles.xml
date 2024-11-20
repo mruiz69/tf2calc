@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="SpinnerTheme">
-        <item name="android:textColor">#34302d</item>
-        <item name="android:fontFamily">@font/tf2build</item>
-        <item name="android:textSize">27sp</item>
-        <item name="dropDownBackgroundTint">#dabdab</item>
-        <item name="overlapAnchor">true</item>
-        <item name="android:background">@drawable/spinner_background</item>
-    </style>
-
+    
     <style name="CustomListTextStyle">
         <item name="android:fontFamily">@font/tf2build</item> <!-- Tu fuente personalizada -->
         <item name="android:textSize">18sp</item> <!-- Puedes ajustar el tamaño -->

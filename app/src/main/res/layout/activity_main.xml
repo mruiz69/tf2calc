@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="match_parent">
+
+<RelativeLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="#34302d">
 
     <FrameLayout
@@ -14,9 +19,7 @@
         android:background="#6b6a65">
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"
+            android:layout_height="700dp"
             android:importantForAccessibility="no"
             android:scaleType="centerCrop"
             android:src="@drawable/sawmill" />
@@ -43,7 +46,7 @@
                 android:backgroundTint="#7c7268"
                 android:fontFamily="@font/tf2build"
                 android:layout_gravity="center"
-                android:textSize="16sp"/>
+                android:textSize="19sp"/>
             <Button
                 android:id="@+id/buttonMap"
                 android:layout_width="wrap_content"
@@ -407,3 +410,4 @@
 
     </LinearLayout>
 </RelativeLayout>
+</ScrollView>

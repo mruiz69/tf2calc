@@ -10,4 +10,7 @@
     <string name="ref">REF</string>
     <string name="x">X</string>
     <string name="danos_tu_opinion">¡DANOS TU OPINION!</string>
+    <string name="registrar_armas">Registrar Armas</string>
+    <string name="elegir_imagen_de_perfil">Cambiar Imagen</string>
+    <string name="mapa">Mapa</string>
 </resources>

@@ -16,7 +16,7 @@
         android:roundIcon="@drawable/tf2logopointer"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppLayouts"
-        tools:targetApi="31">
+        tools:targetApi="34">
 
         <activity
             android:name="com.tf2calc.applayouts.Inicio"
@@ -32,31 +32,17 @@
             android:name="com.tf2calc.applayouts.MainActivity"
             android:screenOrientation="portrait"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.tf2calc.applayouts.Armas"
             android:screenOrientation="portrait"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.tf2calc.applayouts.Mapa"
             android:screenOrientation="portrait"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

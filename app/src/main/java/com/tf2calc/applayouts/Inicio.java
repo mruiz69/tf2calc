@@ -2,6 +2,7 @@ package com.tf2calc.applayouts;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import androidx.activity.EdgeToEdge;
@@ -20,12 +21,28 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.q42.android.scrollingimageview.ScrollingImageView;
 
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallback;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+
 public class Inicio extends AppCompatActivity  implements SensorEventListener{
 
+    private static String mqttHost = "tcp://rhinestonebeak446.cloud.shiftr.io:1883";//ip se dervidor mqtt
+    private static String idUsuario = "AppAndroid";
+
+    private static String topico = "Mensaje";
+    private static String user = "rhinestonebeak446";
+    private static String pass = "Z1Okl4w0XPX5dOgW";
+    private MqttClient mqttClient;
     private SensorManager sensorManager;
     private Sensor proximitySensor;
     private Sensor lightSensor;
@@ -44,10 +61,59 @@ public class Inicio extends AppCompatActivity  implements SensorEventListener{
             return insets;
         });
 
+        try{
+            //crea cliente mqtt
+            mqttClient = new MqttClient(mqttHost,idUsuario,null);
+            MqttConnectOptions options = new MqttConnectOptions();
+            options.setUserName(user);
+            options.setPassword(pass.toCharArray());
+            //conexion a mqtt
+            mqttClient.connect(options);
+            //si se conecta imprime
+            Toast.makeText(this,"Aplicacion conectada a servidor MQTT", Toast.LENGTH_SHORT).show();
+            //manejo de entrega de datos y perdida de conexion
+            mqttClient.setCallback(new MqttCallback() {
+                @Override
+                public void connectionLost(Throwable cause) {
+                    Log.d("MQTT","Conexión Perdida");
+                }
+
+                @Override
+                public void messageArrived(String topic, MqttMessage message) throws Exception {
+                    String payload = new String(message.getPayload());
+                    //runOnUiThread(() -> textView.setText(payload));
+                }
+                //metodo para verificar si envio fue exitoso
+                @Override
+                public void deliveryComplete(IMqttDeliveryToken token) {
+                    Log.d("MQTT","Entrega Completa");
+                }
+            });
+        }
+        catch (MqttException e){
+            e.printStackTrace();
+        }
+
         Button btComenzar = findViewById(R.id.btComenzar);
         btComenzar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String mensaje = "INICIO DE APLICACION DETECTADO";
+                try {
+                    if(mqttClient != null && mqttClient.isConnected()){
+                        //publicar mensaje en topico especificado
+                        mqttClient.publish(topico, mensaje.getBytes(),0,false);
+                        //mostrar mensaje enviado en el textview
+                        //textView.append("\n - "+mensaje);
+                        Toast.makeText(Inicio.this,"Mensaje Enviado", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(Inicio.this,"Error: No se pudo enviar mensaje. La conexion MQTT no esta activa.",Toast.LENGTH_SHORT).show();
+                    }
+                }
+                catch (MqttException e){
+                    e.printStackTrace();
+                }
                 Intent intent = new Intent(Inicio.this, MainActivity.class);
                 startActivity(intent);
             }

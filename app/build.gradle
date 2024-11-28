@@ -1,6 +1,6 @@
 plugins {
     id 'com.android.application'
-    id 'com.google.gms.google-services'
+    //id 'com.google.gms.google-services'
 }
 
 android {
@@ -32,6 +32,9 @@ android {
 
 dependencies {
 
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5'
+    implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
+
     implementation 'org.osmdroid:osmdroid-android:6.1.8'
     implementation 'org.osmdroid:osmdroid-wms:6.1.11'
     
@@ -57,8 +60,8 @@ dependencies {
     //Agregar dependencias
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.google.firebase:firebase-firestore:23.0.0'
-    implementation 'com.google.firebase:firebase-analytics'
-    implementation platform('com.google.firebase:firebase-bom:32.6.0')
+    //implementation 'com.google.firebase:firebase-firestore:23.0.0'
+    //implementation 'com.google.firebase:firebase-analytics'
+    //implementation platform('com.google.firebase:firebase-bom:32.6.0')
     implementation 'com.android.support:multidex:1.0.3'
 }

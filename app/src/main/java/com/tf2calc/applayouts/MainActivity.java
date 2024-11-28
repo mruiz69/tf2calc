@@ -3,16 +3,25 @@ package com.tf2calc.applayouts;
 import android.net.Uri;
 import android.os.Bundle;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallback;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -21,6 +30,15 @@ import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+    private static String mqttHost = "tcp://rhinestonebeak446.cloud.shiftr.io:1883";//ip se dervidor mqtt
+    private static String idUsuario = "AppAndroid";
+
+    private static String topico = "Mensaje";
+    private static String user = "rhinestonebeak446";
+    private static String pass = "Z1Okl4w0XPX5dOgW";
+    private MqttClient mqttClient;
+
+
     private Button btnConvertir;
     private static final int PICK_IMAGE_REQUEST = 1;
     private ImageAdapter imageAdapter;
@@ -29,6 +47,40 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        try{
+            //crea cliente mqtt
+            mqttClient = new MqttClient(mqttHost,idUsuario,null);
+            MqttConnectOptions options = new MqttConnectOptions();
+            options.setUserName(user);
+            options.setPassword(pass.toCharArray());
+            //conexion a mqtt
+            mqttClient.connect(options);
+            //si se conecta imprime
+            Toast.makeText(this,"Aplicacion conectada a servidor MQTT", Toast.LENGTH_SHORT).show();
+            //manejo de entrega de datos y perdida de conexion
+            mqttClient.setCallback(new MqttCallback() {
+                @Override
+                public void connectionLost(Throwable cause) {
+                    Log.d("MQTT","Conexión Perdida");
+                }
+
+                @Override
+                public void messageArrived(String topic, MqttMessage message) throws Exception {
+                    String payload = new String(message.getPayload());
+                    //runOnUiThread(() -> textView.setText(payload));
+                }
+                //metodo para verificar si envio fue exitoso
+                @Override
+                public void deliveryComplete(IMqttDeliveryToken token) {
+                    Log.d("MQTT","Entrega Completa");
+                }
+            });
+        }
+        catch (MqttException e){
+            e.printStackTrace();
+        }
+
 
         Button btVolver = findViewById(R.id.buttonMap);
         Button btCalcular = findViewById(R.id.buttonConvertir);
@@ -59,11 +111,31 @@ public class MainActivity extends AppCompatActivity {
         btCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 EditText ETcantidad = findViewById(R.id.Llaves);
                 EditText ETcompra = findViewById(R.id.ResultadoCompra);
                 EditText ETventa = findViewById(R.id.ResultadoVenta);
 
-                if(ETcantidad.getText().toString().isBlank() || ETcantidad.getText().toString().isEmpty())
+                String mensaje = ETcantidad.getText()+" Llaves calculadas";
+                try {
+                    if(mqttClient != null && mqttClient.isConnected()){
+                        //publicar mensaje en topico especificado
+                        mqttClient.publish(topico, mensaje.getBytes(),0,false);
+                        //mostrar mensaje enviado en el textview
+                        //textView.append("\n - "+mensaje);
+                        Toast.makeText(MainActivity.this,"Mensaje Enviado", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(MainActivity.this,"Error: No se pudo enviar mensaje. La conexion MQTT no esta activa.",Toast.LENGTH_SHORT).show();
+                    }
+                }
+                catch (MqttException e){
+                    e.printStackTrace();
+                }
+
+
+
+                if(ETcantidad.getText().toString().isEmpty())
                 {
                     return;
                 }

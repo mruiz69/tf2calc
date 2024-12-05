@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         botonRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Armas.class);
+                Intent intent = new Intent(MainActivity.this, Firebase.class);
                 startActivity(intent);
             }
         });

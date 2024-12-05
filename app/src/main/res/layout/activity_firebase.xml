@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#34302d">
+    <FrameLayout
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="160dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#6b6a65">
+    </FrameLayout>
+    <ImageView
+        android:layout_marginTop="65dp"
+        android:layout_marginBottom="165dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sawmill">
+    </ImageView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="900dp"
+        android:layout_marginHorizontal="20dp"
+        android:backgroundTint="#E634302d"
+        app:cardCornerRadius="12dp"
+        android:layout_marginTop="75dp"
+        android:layout_gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Formulario de Ingreso de Armas"
+                android:layout_height="wrap_content"
+                android:textColor="#ede7d1"
+                android:textSize="29sp"
+                android:fontFamily="@font/tf2build"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp"/>
+            <EditText
+                android:id="@+id/txtCodigo"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/tf2build"
+                android:background="#fdeecf"
+                android:textColorHint="#34302d"
+                android:textColor="#34302d"
+                android:textSize="22sp"
+                android:layout_gravity="center"
+                android:hint="Ingrese código de Arma"
+                android:layout_marginBottom="15dp"/>
+            <!-- Campo de entrada para el nombre -->
+            <EditText
+                android:id="@+id/txtNombre"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/tf2build"
+                android:background="#fdeecf"
+                android:textColorHint="#34302d"
+                android:textColor="#34302d"
+                android:textSize="22sp"
+                android:layout_gravity="center"
+                android:hint="Ingrese nombre del arma"
+                android:layout_marginBottom="15dp"/>
+            <!-- Campo de entrada para la descripción -->
+            <EditText
+                android:id="@+id/txtDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:fontFamily="@font/tf2build"
+                android:background="#fdeecf"
+                android:textColorHint="#34302d"
+                android:textColor="#34302d"
+                android:textSize="19sp"
+                android:inputType="textMultiLine"
+                android:minLines="4"
+                android:layout_gravity="center"
+                android:hint="Ingrese descripción"
+                android:layout_marginBottom="15dp"/>
+            <Spinner
+                android:id="@+id/spinnerClase"
+                android:textAlignment="center"
+                android:fontFamily="@font/tf2build"
+                android:background="#dabdab"
+                android:gravity="center"
+                android:drawSelectorOnTop="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:contentDescription="Clase"
+                android:dropDownWidth="match_parent"
+                android:minHeight="48dp"
+                android:minWidth="340dp"
+                />
+
+
+            <!-- Campo de entrada para rareza -->
+            <Spinner
+                android:id="@+id/spinnerRareza"
+                android:textAlignment="center"
+                android:fontFamily="@font/tf2build"
+                android:background="#dabdab"
+                android:gravity="center"
+                android:drawSelectorOnTop="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:contentDescription="Clase"
+                android:dropDownWidth="match_parent"
+                android:minHeight="48dp"
+                android:minWidth="340dp"
+                />
+
+            <!-- Botones para operaciones CRUD -->
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#7c7268"
+                android:textColor="#f5e7de"
+                android:fontFamily="@font/tf2build"
+                android:layout_gravity="center"
+                android:onClick="enviarDatosFirestore"
+                android:textSize="19sp"
+                android:text="Enviar Datos"
+                android:layout_marginBottom="15dp"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#7c7268"
+                android:textColor="#f5e7de"
+                android:fontFamily="@font/tf2build"
+                android:layout_gravity="center"
+                android:onClick="cargarLista"
+                android:textSize="19sp"
+                android:text="Cargar Datos"
+                android:layout_marginBottom="15dp"/>
+
+            <!-- ListView para mostrar los elementos -->
+            <ListView
+                android:id="@+id/listaDeArmas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fdeecf"
+                android:textColor="#34302d"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="70dp">
+        <TableRow
+            android:layout_gravity="bottom"
+            android:gravity="bottom">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@drawable/tf2logo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btVolver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/button_bg"
+                android:fontFamily="@font/tf2build"
+                android:textColor="#f5e7de"
+                android:text="Regresar"
+                android:textSize="29sp" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@drawable/tf2logo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+        </TableRow>
+    </TableLayout>
+
+</RelativeLayout>
+</ScrollView>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "39345346911",
+    "project_id": "tf2calcfirebase",
+    "storage_bucket": "tf2calcfirebase.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39345346911:android:5a60d7112df49bad8bbeea",
+        "android_client_info": {
+          "package_name": "com.tf2calc.applayouts"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOt5S8c6Qp6vHKPi7TdsChIRefaPoOzOc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
